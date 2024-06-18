@@ -1,0 +1,105 @@
+<!-- Loading bar -->
+<fuse-loading-bar></fuse-loading-bar>
+
+<div
+    class="flex justify-center flex-auto w-full bg-gray-200 dark:bg-card sm:p-4 md:p-8"
+>
+    <!-- Navigation -->
+    @if (isScreenSmall) {
+        <fuse-vertical-navigation
+            class="bg-gray-900 dark print:hidden"
+            [mode]="'over'"
+            [name]="'mainNavigation'"
+            [navigation]="navigation.default"
+            [opened]="false"
+        >
+            <!-- Navigation header hook -->
+            <ng-container fuseVerticalNavigationContentHeader>
+                <!-- Logo -->
+                <div class="flex items-center h-20 px-8 pt-6">
+                    <img class="w-30" src="images/logo/logo-text-on-dark.svg" />
+                </div>
+            </ng-container>
+        </fuse-vertical-navigation>
+    }
+
+    <!-- Wrapper -->
+    <div
+        class="flex flex-col items-center flex-auto min-w-0 overflow-hidden shadow-2xl max-w-360 dark:shadow-none sm:rounded-xl"
+    >
+        <!-- Header -->
+        <div
+            class="relative flex items-center w-full h-16 px-4 border-b bg-card z-49 flex-0 dark:bg-default sm:h-20 md:px-6 print:hidden"
+        >
+            @if (!isScreenSmall) {
+                <!-- Logo -->
+                <div class="flex items-center mx-2 lg:me-8">
+                    <div class="hidden lg:flex">
+                        <!-- Light version -->
+                        <img
+                            class="w-24 dark:hidden"
+                            src="images/logo/logo-text.svg"
+                            alt="Logo image"
+                        />
+                        <!-- Dark version -->
+                        <img
+                            class="hidden w-24 dark:flex"
+                            src="images/logo/logo-text-on-dark.svg"
+                            alt="Logo image"
+                        />
+                    </div>
+                    <!-- Small version -->
+                    <img
+                        class="flex w-8 lg:hidden"
+                        src="images/logo/logo.svg"
+                        alt="Logo image"
+                    />
+                </div>
+                <!-- Horizontal navigation -->
+                <fuse-horizontal-navigation
+                    class="me-2"
+                    [name]="'mainNavigation'"
+                    [navigation]="navigation.horizontal"
+                ></fuse-horizontal-navigation>
+            }
+            <!-- Navigation toggle button -->
+            @if (isScreenSmall) {
+                <button
+                    class="me-2"
+                    mat-icon-button
+                    (click)="toggleNavigation('mainNavigation')"
+                >
+                    <mat-icon [svgIcon]="'heroicons_outline:bars-3'"></mat-icon>
+                </button>
+            }
+            <!-- Components -->
+            <div class="flex items-center space-x-1 ms-auto ps-2 sm:space-x-2">
+                <languages></languages>
+                <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
+                <search [appearance]="'bar'"></search>
+                <shortcuts></shortcuts>
+                <messages></messages>
+                <notifications></notifications>
+                <user></user>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="flex flex-col flex-auto w-full bg-default">
+            <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
+                 Otherwise, layout changes won't be registered and the view won't be updated! -->
+            @if (true) {
+                <router-outlet></router-outlet>
+            }
+        </div>
+
+        <!-- Footer -->
+        <div
+            class="relative flex items-center justify-start w-full h-16 px-6 border-t bg-card z-49 flex-0 dark:bg-default sm:h-20 sm:px-8 print:hidden"
+        >
+            <span class="font-medium text-secondary"
+                >Fuse &copy; {{ currentYear }}</span
+            >
+        </div>
+    </div>
+</div>

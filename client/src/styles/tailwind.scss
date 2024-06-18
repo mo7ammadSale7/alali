@@ -1,0 +1,18 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Main Tailwind file for injecting utilities.
+/* ----------------------------------------------------------------------------------------------------- */
+@tailwind utilities;
+
+/* Custom RTL support */
+html[dir='rtl'] {
+    @apply direction-rtl text-right;
+}
+
+@layer utilities {
+    .direction-rtl {
+        direction: rtl;
+    }
+    .text-right {
+        text-align: right;
+    }
+}

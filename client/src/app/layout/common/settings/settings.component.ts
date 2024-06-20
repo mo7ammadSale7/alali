@@ -114,6 +114,9 @@ export class SettingsComponent implements OnInit, AfterViewInit, OnDestroy {
                 queryParamsHandling: 'merge',
             })
             .then(() => {
+                // Set layout into localStorage
+                localStorage.setItem('layout', layout);
+
                 // Set the config
                 this._fuseConfigService.config = { layout };
             });
@@ -125,6 +128,8 @@ export class SettingsComponent implements OnInit, AfterViewInit, OnDestroy {
      * @param scheme
      */
     setScheme(scheme: Scheme): void {
+        // Set scheme into localStorage
+        localStorage.setItem('scheme', scheme);
         this._fuseConfigService.config = { scheme };
     }
 
@@ -134,6 +139,8 @@ export class SettingsComponent implements OnInit, AfterViewInit, OnDestroy {
      * @param theme
      */
     setTheme(theme: Theme): void {
+        // Set theme into localStorage
+        localStorage.setItem('theme', theme);
         this._fuseConfigService.config = { theme };
     }
 }

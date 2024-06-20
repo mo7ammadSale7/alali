@@ -10,6 +10,7 @@ import {
     withPreloading,
 } from '@angular/router';
 import { provideFuse } from '@fuse';
+import { Scheme } from '@fuse/services/config';
 import { TranslocoService, provideTransloco } from '@ngneat/transloco';
 import { appRoutes } from 'app/app.routes';
 import { provideAuth } from 'app/core/auth/auth.provider';
@@ -94,39 +95,45 @@ export const appConfig: ApplicationConfig = {
                 services: mockApiServices,
             },
             fuse: {
-                layout: 'classy',
-                scheme: 'light',
+                layout: localStorage.getItem('layout') ? localStorage.getItem('layout') : 'classy',
+                scheme: localStorage.getItem('scheme') ? <Scheme>localStorage.getItem('scheme') : 'light',
                 screens: {
                     sm: '600px',
                     md: '960px',
                     lg: '1280px',
                     xl: '1440px',
                 },
-                theme: 'theme-default',
+                theme: localStorage.getItem('theme') ? localStorage.getItem('theme') : 'theme-teal',
                 themes: [
                     {
                         id: 'theme-default',
                         name: 'Default',
+                        nameAr: 'افتراضي',
                     },
                     {
                         id: 'theme-brand',
                         name: 'Brand',
+                        nameAr: 'الماركة',
                     },
                     {
                         id: 'theme-teal',
                         name: 'Teal',
+                        nameAr: 'تيل',
                     },
                     {
                         id: 'theme-rose',
                         name: 'Rose',
+                        nameAr: 'زهري',
                     },
                     {
                         id: 'theme-purple',
                         name: 'Purple',
+                        nameAr: 'بنفسج',
                     },
                     {
                         id: 'theme-amber',
                         name: 'Amber',
+                        nameAr: 'كهرمان',
                     },
                 ],
             },

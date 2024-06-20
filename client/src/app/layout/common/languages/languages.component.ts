@@ -58,6 +58,7 @@ export class LanguagesComponent implements OnInit, OnDestroy {
 
             // Update the navigation
             this._updateNavigation(activeLang);
+            localStorage.setItem('activeLang', activeLang)
 
             // Apply RTL if Arabic
             document.documentElement.dir = activeLang === 'ar' ? 'rtl' : 'ltr';
@@ -127,6 +128,7 @@ export class LanguagesComponent implements OnInit, OnDestroy {
                 'mainNavigation'
             );
 
+
         // Return if the navigation component does not exist
         if (!navComponent) {
             return null;
@@ -137,12 +139,12 @@ export class LanguagesComponent implements OnInit, OnDestroy {
 
         // Get the Project dashboard item and update its title
         const projectDashboardItem = this._fuseNavigationService.getItem(
-            'dashboards.project',
+            'example',
             navigation
         );
         if (projectDashboardItem) {
             this._translocoService
-                .selectTranslate('Project')
+                .selectTranslate('Example')
                 .pipe(take(1))
                 .subscribe((translation) => {
                     // Set the title
